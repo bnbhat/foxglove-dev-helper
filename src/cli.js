@@ -1,15 +1,16 @@
+// cli.js
 #!/usr/bin/env node
 
 const { startWatching } = require('./index');
 
+// Parsing command line arguments
 const args = process.argv.slice(2);
+const directory = args[0] || '.';
 
-if (args.length > 0 && args[0] === 'watch') {
-    //const command = 'foxglove-extension install';  // Default command to execute
-    const command = 'echo "test-cmd exec" ';  // Test
-    const directory = args[1] || './';  // Default directory to watch if none specified
-
-    startWatching(command, directory);
-} else {
-    console.log("Usage: foxglove-dev-helper watch [directory]");
+if (args.length === 0) {
+    console.log("Usage: foxglove-dev-helper <path-to-watch>");
+    process.exit(1);
 }
+
+// Starting the watcher
+startWatching(directory);

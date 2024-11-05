@@ -1,10 +1,10 @@
+// index.js
 const watcher = require('./watcher');
 
 // Function to start watching
-function startWatching(command, directory) {
+function startWatching(directory) {
     console.log(`Watching for changes in ${directory}...`);
-    watcher.watchDirectory(command, directory);
-    console.log(`Command to fexecute: ${command}`);
+    watcher.setupWatcher(directory);
 }
 
 module.exports = {
