@@ -1,0 +1,18 @@
+{
+  "name": "foxglove-dev-helper",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "bin": {
+    "foxglove-dev-helper": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chokidar": "^4.0.1"
+  }
+}
