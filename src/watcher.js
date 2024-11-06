@@ -1,13 +1,9 @@
 // watcher.js
 const chokidar = require('chokidar');
 
-// Function to ignore node_modules, .git, and dotfiles
-function ignoredPaths(path) {
-  return /(^|[\/\\])\..|node_modules|\.git/.test(path);
-}
 
 // Setting up the watcher with options
-function setupWatcher(pathToWatch) {
+function setupWatcher(pathToWatch, ignoredPaths, onFileChange) {
     const watcher = chokidar.watch(pathToWatch, {
         ignored: ignoredPaths,
         persistent: true,
@@ -18,7 +14,10 @@ function setupWatcher(pathToWatch) {
 
     watcher
         .on('add', path => log(`File ${path} has been added`))
-        .on('change', path => log(`File ${path} has been changed`))
+        .on('change', path => {
+            log(`File ${path} has been changed`);
+            onFileChange(path);
+        })
         .on('unlink', path => log(`File ${path} has been removed`))
         .on('addDir', path => log(`Directory ${path} has been added`))
         .on('unlinkDir', path => log(`Directory ${path} has been removed`))
